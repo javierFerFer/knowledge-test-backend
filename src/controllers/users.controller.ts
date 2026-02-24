@@ -7,16 +7,18 @@ import {
   Body,
   Param,
   ParseIntPipe,
+  Logger,
 } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { User } from '../entities/user.entity';
+import { UserDto } from 'src/dtos/users.dto';
 
-@Controller('Users')
+@Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
   @Post()
-  create(@Body() body: Partial<User>) {
+  create(@Body() body: UserDto) {
     return this.userService.create(body);
   }
 
@@ -31,7 +33,7 @@ export class UsersController {
   }
 
   @Put(':id')
-  update(@Param('id', ParseIntPipe) id: number, @Body() body: Partial<User>) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() body: UserDto) {
     return this.userService.update(id, body);
   }
 
