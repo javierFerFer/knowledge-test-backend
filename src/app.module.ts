@@ -18,7 +18,7 @@ import { UsersModule } from './modules/users.module';
         password: config.get<string>('DB_PASSWORD'),
         database: config.get<string>('DB_NAME'),
         entities: [User],
-        synchronize: false,
+        synchronize: true,
         retryAttempts: 10,
         retryDelay: 3000,
       }),
